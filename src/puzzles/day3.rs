@@ -3,9 +3,9 @@ use std::{
     path::Path,
 };
 
-use regex::{Matches, Regex};
+use regex::Regex;
 
-pub fn run_day_three() {
+pub fn run() {
     println!("Executing day 3");
 
     let path: &Path = Path::new("./inputs/day_three.txt");
@@ -77,7 +77,9 @@ fn part_two(mul_string: &str) -> usize {
     uncorupted
 }
 
-mod tests {
+#[cfg(test)]
+mod test {
+    use super::*;
     #[test]
     fn part_one_test() {
         // Arrange
@@ -85,7 +87,7 @@ mod tests {
         let expected = 161;
 
         // Act
-        let actual = crate::puzzles::day_three::part_one(&mul_string);
+        let actual = part_one(&mul_string);
 
         // Assert
         assert_eq!(expected, actual);
@@ -99,7 +101,7 @@ mod tests {
         let expected = 48;
 
         // Act
-        let actual = crate::puzzles::day_three::part_two(&mul_string);
+        let actual = part_two(&mul_string);
 
         // Assert
         assert_eq!(expected, actual);

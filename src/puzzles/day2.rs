@@ -1,20 +1,29 @@
-use std::{
-    fs::File,
-    io::{self, BufRead},
-    path::Path,
-};
+use std::{fs::File, 
+    io::{self, BufRead, BufReader}}
+;
 
-pub fn run_day_two() {
+use crate::file_helper::get_file;
+
+pub fn run() {
     println!("Executing day 2");
 
-    let path: &Path = Path::new("./inputs/day_two.txt");
+    let file = get_file("./inputs/day_two.txt").unwrap();
 
-    let file = File::open(&path).expect("Failed to open the file");
     let reader = io::BufReader::new(file);
 
+    let lines_list = parse_input(reader);
+
+    let solution_part_one = part_one(&lines_list);
+    println!("The solution for day 2, part a is {}", solution_part_one);
+
+    let solution_part_two = part_two(&lines_list);
+    println!("The solution for day 2, part b is {}", solution_part_two);
+}
+
+fn parse_input(input: BufReader<File>) -> Vec<Vec<i32>> {
     let mut lines_list = Vec::new();
 
-    for line in reader.lines() {
+     for line in input.lines() {
         let mut line_list = Vec::new();
         match line {
             Ok(content) => {
@@ -31,11 +40,7 @@ pub fn run_day_two() {
         lines_list.push(line_list);
     }
 
-    let solution_part_one = part_one(&lines_list);
-    println!("The solution for day 2, part a is {}", solution_part_one);
-
-    let solution_part_two = part_two(&lines_list);
-    println!("The solution for day 2, part b is {}", solution_part_two);
+    lines_list
 }
 
 fn part_one(lines: &Vec<Vec<i32>>) -> i32 {
@@ -81,7 +86,8 @@ fn is_safe(line: &Vec<i32>) -> bool {
     is_consistent && difference_smaller_four
 }
 
-mod tests {
+#[cfg(test)]
+mod test {
     use super::*;
 
     #[test]
