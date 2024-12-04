@@ -8,7 +8,7 @@ use regex::Regex;
 pub fn run() {
     println!("Executing day 3");
 
-    let path: &Path = Path::new("./inputs/day_three.txt");
+    let path: &Path = Path::new("./inputs/day3.txt");
 
     let mul_string = fs::read_to_string(path).unwrap();
 

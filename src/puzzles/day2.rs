@@ -7,7 +7,7 @@ use crate::file_helper::get_file;
 pub fn run() {
     println!("Executing day 2");
 
-    let file = get_file("./inputs/day_two.txt").unwrap();
+    let file = get_file("./inputs/day2.txt").unwrap();
 
     let reader = io::BufReader::new(file);
 
